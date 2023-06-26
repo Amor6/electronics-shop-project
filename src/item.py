@@ -1,3 +1,6 @@
+import self as self
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -16,21 +19,26 @@ class Item:
         self.name = name
         self.price = price
         self.quantity = quantity
+        self.pay_rate = 0.8
 
-    def calculate_total_price(self) -> float:
+
+    def calculate_total_price(self, ap) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
 
         :return: Общая стоимость товара.
         """
-        print(Item.all)
 
-    def apply_discount(self) -> None:
+        return self.price * self.quantity
+
+
+    def apply_discount(self, rate) -> None:
         """
         Применяет установленную скидку для конкретного товара.
         """
-        Item.pay_rate = 0.8
-        print(Item.pay_rate)
+        self.price = self.price * self.pay_rate
+
+
 
     def __repr__(self):
         return f'Item{self.name}, {self.price},{self.quantity}'
