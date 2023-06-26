@@ -1,4 +1,3 @@
-import self as self
 
 
 class Item:
@@ -16,7 +15,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         self.pay_rate = 0.8
@@ -40,6 +39,22 @@ class Item:
         """
         self.price = self.price * self.pay_rate
 
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, result_name) -> None:
+
+        self.result_name = self.name[:0] + self.name[10:]
+
+    def instantiate_from_csv(self):
+        import csv
+        with open('names.csv', newline='') as csvfile:
+            self.name = csv.DictReader(csvfile)
+
+    def string_to_number(self, name_string):
+        self.name_string = str(self.name)
 
 
     def __repr__(self):
