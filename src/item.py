@@ -18,9 +18,8 @@ class Item:
         self.__name = name
         self.price = price
         self.quantity = quantity
-        self.pay_rate = 0.8
 
-        Item.all.append(self)
+        self.all.append(self)
 
 
     def calculate_total_price(self) -> float:
