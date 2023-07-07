@@ -1,4 +1,3 @@
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -20,7 +19,6 @@ class Item:
 
         self.all.append(self)
 
-
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -29,7 +27,6 @@ class Item:
         """
 
         return self.price * self.quantity
-
 
     def apply_discount(self) -> None:
         """
@@ -43,7 +40,6 @@ class Item:
 
     @name.setter
     def name(self, result_name) -> None:
-
         self.result_name = self.name[:0] + self.name[10:]
 
     def instantiate_from_csv(self):
@@ -54,9 +50,19 @@ class Item:
     def string_to_number(self, name_string):
         self.name_string = str(self.name)
 
-
     def __repr__(self):
         return f'{self.__class__.__name__},({self.name}, {self.price},{self.quantity})'
 
     def __str__(self):
         return f'{self.name}, {self.price}'
+
+
+class Phone:
+
+    def __init__(self, name, price, quantity, number_of_sim):
+        super.__init__(name, price, quantity)
+        self.sim_card = number_of_sim
+
+
+def name():
+    return None
