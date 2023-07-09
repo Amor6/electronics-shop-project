@@ -1,15 +1,26 @@
 from src.phone import Phone
 from src.item import Item
-from src.item import name
 import pytest
 
-def Phone():
-    phone_test = Phone("Смартфон", 10000, 20)
-    return phone_test
 
-def sum_price(self, Phone):
-    if isinstance(Phone.__class__):
-        return self.phone + Phone.__class__
-    return False
+class Phonet(Phone):
+    def __init__(self, name, price, quantity):
+        super().__init__(name, price, quantity)
 
+    #     self.name = name
+    #     self.price = price
+    #     self.quantity = quantity
+
+    def __phonet(self, name, price, quantity):
+        try:
+            if not isinstance(name, str):
+                raise TypeError("Название товара необходимо указано буквами")
+            elif not isinstance(price, (int, float)):
+                raise TypeError("Цену необходимо указать числом")
+            elif not isinstance(quantity, int):
+                raise TypeError("Количество необходимо указать целым числом")
+            else:
+                print(self)
+        except TypeError as ER:
+            print(ER)
 
