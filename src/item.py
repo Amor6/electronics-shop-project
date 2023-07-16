@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 class InstantiateCSVError(Exception):
@@ -75,32 +76,23 @@ def name():
 
 
 @classmethod
-def instantiate_from_csv(cls, path="../src/items.csv"):
+def instantiate_from_csv(cls, path="../src/items.csv", reader=None, required_columns=None):
     """ Создание объектов из данных файла """
     items = []
 
     try:
         with open(os.path.abspath(path), 'r', newline='') as csvfile:
-            reader = csv.DictReader(csvfile, delimiter=',')
-            required_columns = ['name', 'price', 'quantity']
-            # Проверяем наличие необходимых колонок
-            try:
-                if not all(column in reader.fieldnames for column in required_columns):
-                    raise InstantiateCSVError()
-            except InstantiateCSVError as e:
-                print(e)
-                raise
-            else:
-                for row in reader:
-                    try:
-                        item = cls(row['name'], float(row['price']), int(row['quantity']))
-                    except ValueError:
-                        print(f"Ошибка при чтении данных в строке {reader.line_num}: {row}")
-                        raise
-                    else:
-                        items.append(item)
+             # reader = csv.DictReader(csvfile, delimiter=',')
+             # required_columns = ['name', 'price', 'quantity']
+            if not all(column in reader.fieldnames for column in required_columns):
+                raise InstantiateCSVError()
+
     except FileNotFoundError:
         print("Отсутствует файл .csv")
+        raise
+
+    except InstantiateCSVError as e:
+        print(e)
         raise
 
     cls.all = items
